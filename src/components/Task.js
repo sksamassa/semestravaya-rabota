@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
-import { useQuery, useMutation } from 'react-query';
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import '../styles/Task.css';
 
 export default function Task() {
     // Load todos from localStorage on component mount
@@ -54,17 +56,17 @@ export default function Task() {
     todo.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div>
+    <div className="task">
     {/* Search bar */}
     <input type='search' placeholder="Search ..." 
             value={searchTerm} 
             onChange={e => setSearchTerm(e.target.value)}/>
       <AddTodo onAddTodo={handleAddTodo} />
 
-      <ul>
+      <ul className='task_list'>
         {/* Render filteredTodos */}
         {filteredTodos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className='task_item'>
             <input
               type="checkbox"
               checked={todo.done}
@@ -75,13 +77,18 @@ export default function Task() {
                   )
                 )
               }
+              className="task_checkbox"
             />
             {/* Todo content */}
             {todo.title}
             {/* Delete a task */}
-            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+            <button onClick={() => handleDeleteTodo(todo.id)}>
+                <MdDelete className="task_delete" />
+            </button>
             {/* Edit a task */}
-            <button onClick={() => handleEditTodo(todo.id)}>Edit</button>
+            <button onClick={() => handleEditTodo(todo.id)}>
+                <FaEdit className="task_edit" />
+            </button>
           </li>
         ))}
       </ul>
