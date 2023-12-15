@@ -1,30 +1,65 @@
 import React, { useState } from "react";
+import AddTodo from "./AddTodo";
 
-export default function Task({ todo, onChange, onDelete }) {
-    const [isEditing, setIsEditing] = useState(false);
-    let taskContent = "";
+export default function Task() {
+  const [todos, setTodos] = useState([]);
 
-    // Wheter in editing mode or not.
-    if(isEditing){
-        taskContent = (<div>
-            <input value={todo.title} onChange={e => (
-                onChange({...todo, title: e.target.value})
-            )} />
-            <button onClick={() => setIsEditing(false)}>Save</button>
-        </div>);
-    } else {
-        taskContent = (<div>
-            {todo.title}
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-        </div>);
-    }
+  function handleAddTodo(title) {
+    setTodos([
+      {
+        id: Date.now(),
+        title: title,
+        done: false,
+      },
+      ...todos,
+    ]);
+  }
 
-    return (
-        <div>
-            <input type="checkbox" checked={todo.done} 
-            onChange={e => onChange({...todo, done: e.target.checked})} />
-            {taskContent}
-            <button onClick={() => onDelete(todo.id)}>Delete</button>
-        </div>
+  function handleEditTodo(todoId) {
+    const editedTitle = prompt(
+      "Edit Task",
+      todos.find((todo) => todo.id === todoId)?.title
     );
+
+    if (editedTitle !== null && editedTitle.trim() !== "") {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === todoId ? { ...todo, title: editedTitle } : todo
+        )
+      );
+    }
+  }
+
+  function handleDeleteTodo(todoId) {
+    setTodos(todos.filter((todo) => todo.id !== todoId));
+  }
+
+  return (
+    <div>
+      <AddTodo onAddTodo={handleAddTodo} />
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <input
+              type="checkbox"
+              checked={todo.done}
+              onChange={() =>
+                setTodos(
+                  todos.map((t) =>
+                    t.id === todo.id ? { ...t, done: !t.done } : t
+                  )
+                )
+              }
+            />
+            {/* Todo content */}
+            {todo.title}
+            {/* Delete a task */}
+            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+            {/* Edit a task */}
+            <button onClick={() => handleEditTodo(todo.id)}>Edit</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }

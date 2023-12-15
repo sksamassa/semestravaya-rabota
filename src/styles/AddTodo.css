@@ -1,0 +1,10 @@
+.error {
+    display: block;
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.no-error {
+    display: none;
+}

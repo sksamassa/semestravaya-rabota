@@ -1,11 +1,11 @@
-import React from 'react';
-import TaskApp from './components/TaskApp';
+import React from "react";
+import Task from "./components/Task";
 
 function App() {
   return (
     <div className="App">
-        <TaskApp />
-      </div>
+      <Task />
+    </div>
   );
 }
 
