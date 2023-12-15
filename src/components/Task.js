@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
+import { useQuery, useMutation } from 'react-query';
 
 export default function Task() {
     // Load todos from localStorage on component mount
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) ?? []);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Save todos to localStorage whenever it changes
   useEffect(() => {
@@ -47,11 +49,21 @@ export default function Task() {
       }
   }
 
+  // Filter todos based on 'searchTerm' state.
+  const filteredTodos = todos.filter(todo => 
+    todo.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <div>
+    {/* Search bar */}
+    <input type='search' placeholder="Search ..." 
+            value={searchTerm} 
+            onChange={e => setSearchTerm(e.target.value)}/>
       <AddTodo onAddTodo={handleAddTodo} />
+
       <ul>
-        {todos.map((todo) => (
+        {/* Render filteredTodos */}
+        {filteredTodos.map((todo) => (
           <li key={todo.id}>
             <input
               type="checkbox"
