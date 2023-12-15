@@ -37,7 +37,14 @@ export default function Task() {
   }
 
   function handleDeleteTodo(todoId) {
+    // Ask for confirmation using alert
+    const shouldDelete = window.confirm(
+        "Are you sure you want to delete this task?"
+      );
+
+      if(shouldDelete){
     setTodos(todos.filter((todo) => todo.id !== todoId));
+      }
   }
 
   return (
