@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
 
 export default function Task() {
-  const [todos, setTodos] = useState([]);
+    // Load todos from localStorage on component mount
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) ?? []);
+
+  // Save todos to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function handleAddTodo(title) {
     setTodos([
