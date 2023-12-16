@@ -79,9 +79,12 @@ export default function Task() {
               }
               className="task_checkbox"
             />
+
             {/* Todo content */}
-            {todo.title}
-            {/* Delete a task */}
+            <div className="task_title">{todo.title}</div>
+            
+            <div className="del-edit">
+                {/* Delete a task */}
             <button onClick={() => handleDeleteTodo(todo.id)}>
                 <MdDelete className="task_delete" />
             </button>
@@ -89,6 +92,7 @@ export default function Task() {
             <button onClick={() => handleEditTodo(todo.id)}>
                 <FaEdit className="task_edit" />
             </button>
+            </div>
           </li>
         ))}
       </ul>

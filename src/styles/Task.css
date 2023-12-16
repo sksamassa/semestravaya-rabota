@@ -20,7 +20,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -76,8 +76,6 @@ input[type='checkbox']:checked {
 
 .task_delete{
     color: red;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .task_edit{
@@ -115,3 +113,15 @@ input[type=search]:hover{
    width: 300px;
 }
 
+.del-edit {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.task_title {
+    width: 470px;
+    align-self: center;
+    overflow-x: auto;
+    word-break: break-all;
+}
