@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../styles/AddTodo.css';
+import { MdAddTask } from "react-icons/md";
 
 export default function AddTodo({ onAddTodo }) {
   const [title, setTitle] = useState("");
@@ -20,7 +21,7 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Add a task</button>
+        <button type="submit"><MdAddTask className="task-add"/></button>
       </form>
     </div>
   );

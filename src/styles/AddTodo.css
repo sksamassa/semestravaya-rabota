@@ -1,4 +1,9 @@
 button[type=submit] {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    gap: 10px; 
+
     border: none;
     background-color: #04AA6D;
     color: #fff;
@@ -7,4 +12,30 @@ button[type=submit] {
     margin-bottom: 16px;
     margin-top: 16px;
     cursor: pointer;
+    transition: all .6s;
+}
+
+button[type=submit]:hover {
+    transform: scale(1.2);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-add {
+    font-size: 16px;
+    
+}
+
+/* .task-add:hover {
+    border-radius: 50%;
+    transform: scale(1.2);
+} */
+
+button[type=submit]:hover {
+   font-weight: bold;
 }
