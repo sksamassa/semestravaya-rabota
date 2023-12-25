@@ -42,6 +42,7 @@ body {
 .task_list li:hover {
     transform: scale(1.05, 1.3);
     box-shadow: 0 0 1px rgba(0, 0, 0, .25);
+    margin-bottom: 20px;
 }
 
 .task_list li {
